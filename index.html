@@ -16,33 +16,50 @@
       background-position: center;
       background-attachment: fixed;
     }
+    .mobile-menu {
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- Navigation - Mobile Optimized -->
+  <!-- Navigation with Working Mobile Menu -->
   <nav class="bg-black text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
       <div class="flex justify-between items-center">
-        <div class="text-xl sm:text-2xl font-bold tracking-tight text-yellow-400">Senator Essy</div>
-        
-        <!-- Mobile Menu (Simple for now - can be expanded later) -->
-        <div class="hidden md:flex space-x-6 text-base">
+        <!-- Logo -->
+        <div class="text-xl sm:text-2xl font-bold tracking-tight text-yellow-400">
+          Senator Essy
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 text-base">
           <a href="index.html" class="hover:text-yellow-400 transition">Home</a>
           <a href="about.html" class="hover:text-yellow-400 transition">About</a>
           <a href="achievements.html" class="hover:text-yellow-400 transition">Achievements</a>
           <a href="contact.html" class="hover:text-yellow-400 transition">Contact</a>
         </div>
-        
-        <!-- Mobile Hamburger (Placeholder) -->
-        <button class="md:hidden text-white text-2xl">
+
+        <!-- Hamburger Button -->
+        <button id="menu-btn" 
+                class="md:hidden text-3xl focus:outline-none">
           <i class="fas fa-bars"></i>
         </button>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden mobile-menu bg-black mt-4 py-6 rounded-xl">
+        <div class="flex flex-col space-y-6 px-6 text-lg">
+          <a href="index.html" class="hover:text-yellow-400 transition">Home</a>
+          <a href="about.html" class="hover:text-yellow-400 transition">About</a>
+          <a href="achievements.html" class="hover:text-yellow-400 transition">Achievements</a>
+          <a href="contact.html" class="hover:text-yellow-400 transition">Contact</a>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section - Mobile First -->
+  <!-- Hero Section -->
   <header class="hero-bg min-h-screen flex items-center text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
       <div class="flex flex-col items-center gap-10 md:flex-row md:gap-16">
@@ -86,7 +103,7 @@
   <!-- Quick Stats -->
   <section class="bg-black py-10 sm:py-12 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
         <div>
           <p class="text-4xl sm:text-5xl font-bold text-yellow-400">12+</p>
           <p class="mt-2 text-gray-300 text-sm sm:text-base">Bills Sponsored</p>
@@ -123,6 +140,7 @@
           <h3 class="text-xl sm:text-2xl font-semibold mt-6">Education</h3>
           <p class="mt-4 text-gray-600">Advocating for quality education and scholarship programs for underprivileged youth.</p>
         </div>
+        <!-- Repeat other 5 cards the same way -->
         <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition">
           <span class="text-4xl">🏥</span>
           <h3 class="text-xl sm:text-2xl font-semibold mt-6">Healthcare</h3>
@@ -165,6 +183,25 @@
       </a>
     </div>
   </section>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let isOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        mobileMenu.classList.remove('hidden');
+        menuBtn.innerHTML = '<i class="fas fa-times"></i>'; // Change to X icon
+      } else {
+        mobileMenu.classList.add('hidden');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>'; // Change back to hamburger
+      }
+    });
+  </script>
 
 </body>
 </html>
